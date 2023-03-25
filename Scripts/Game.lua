@@ -1,4 +1,6 @@
 Game = class( nil )
+Game.defaultInventorySize = 10
+Game.enableLimitedInventory = true
 
 function Game.server_onCreate( self )
 	print("Game.server_onCreate")
@@ -24,4 +26,17 @@ end
 function Game.sv_createPlayerCharacter( self, world, x, y, player, params )
     local character = sm.character.createCharacter( player, world, sm.vec3.new( 32, 32, 5 ), 0, 0 )
 	player:setCharacter( character )
+end
+
+function Game:sv_invToggle()
+    sm.game.setLimitedInventory(not sm.game.getLimitedInventory())
+end
+
+
+function Game:client_onCreate()
+    sm.game.bindChatCommand( "/inv", {}, "cl_invToggle", "Toggle unlimited inv" )
+end
+
+function Game:cl_invToggle()
+    self.network:sendToServer("sv_invToggle")
 end

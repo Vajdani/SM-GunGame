@@ -9,6 +9,7 @@ Shotgun.gunData = {
 	magSize = 4,
 	projectile = projectile_fries,
 	canAim = false,
+	autoFire = true,
 	effectTp = "SpudgunFrier - FrierMuzzel",
 	effectFp = "SpudgunFrier - FPFrierMuzzel",
 	renderables = {

@@ -222,6 +222,8 @@ local reloadAnims = {
 
 ---@return Vec3?
 function BaseGun:cl_update(dt)
+	if not sm.exists(self.tool) then return end
+
     local isSprinting =  self.tool:isSprinting()
 	local isCrouching =  self.tool:isCrouching()
 
@@ -449,7 +451,10 @@ function BaseGun:client_onEquippedUpdate( lmb, rmb, f )
 		self.cl_shooting = shooting
 		self.network:sendToServer("sv_updateShooting", shooting)
 	end
-    self:cl_shoot()
+
+	if self.gunData.autoFire or lmb == 1 then
+    	self:cl_shoot()
+	end
 
     local aiming = rmb == 1 or rmb == 2
     if self.gunData.canAim and aiming ~= self.cl_aiming then

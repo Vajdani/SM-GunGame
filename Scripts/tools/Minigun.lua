@@ -9,6 +9,7 @@ Minigun.gunData = {
 	magSize = 50,
 	projectile = projectile_smallpotato,
 	canAim = false,
+	autoFire = true,
 	fireDelayVar = "gatlingWeight",
 	effectTp = "SpudgunSpinner - SpinnerMuzzel",
 	effectFp = "SpudgunSpinner - FPSpinnerMuzzel",
@@ -103,6 +104,8 @@ end
 
 
 function Minigun:client_onUpdate(dt)
+	if not sm.exists(self.tool) then return end
+
 	local pos = self:cl_update(dt)
 	if pos then self.windupEffect:setPosition( pos ) end
 

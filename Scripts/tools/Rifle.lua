@@ -4,11 +4,12 @@ dofile( "$CONTENT_DATA/Scripts/tools/BaseGun.lua" )
 ---@classs Rifle : BaseGun
 Rifle = class(BaseGun)
 Rifle.gunData = {
-	damage = 75,
-	cooldown = 1.25,
-	magSize = 5,
+	damage = 28,
+	cooldown = 0.2,
+	magSize = 15,
 	projectile = projectile_potato,
 	canAim = true,
+	autoFire = false,
 	effectTp = "SpudgunBasic - BasicMuzzel",
 	effectFp = "SpudgunBasic - FPBasicMuzzel",
 	renderables = {

@@ -16,11 +16,12 @@ end
 
 function Player:sv_resetInv(item)
 	sm.container.beginTransaction()
-	local inv = self.player:getInventory()
+	--[[local inv = self.player:getInventory()
 	local uuid = item or uuid_nil
 	for i = 1, inv:getSize() do
 		inv:setItem(i-1, uuid, 1)
-	end
+	end]]
+	self.player:getInventory():setItem(0, item or uuid_nil, 1)
 	sm.container.endTransaction()
 end
 

@@ -157,6 +157,7 @@ function BaseGun:cl_equip(animate)
 	self.wantEquipped = true
 	self.cl_aiming = false
 	self.cl_shooting = false
+	self.cl_reloading = false
 	local cameraWeight, cameraFPWeight = self.tool:getCameraWeights()
 	self.aimWeight = math.max( cameraWeight, cameraFPWeight )
 	self.jointWeight = 0.0
@@ -190,6 +191,7 @@ function BaseGun:cl_unequip(animate)
 	self.equipped = false
 	self.cl_aiming = false
 	self.cl_shooting = false
+	self.cl_reloading = false
 
 	if sm.exists( self.tool ) then
 		if animate then
@@ -323,14 +325,12 @@ end
 
 function BaseGun:updateCam(dt)
     local bobbing = 1
+	local blend = 1 - (1 - 1 / self.aimBlendSpeed) ^ (dt * 60)
 	if self.cl_aiming then
-		local blend = 1 - math.pow( 1 - 1 / self.aimBlendSpeed, dt * 60 )
 		self.aimWeight = sm.util.lerp( self.aimWeight, 1.0, blend )
 		bobbing = 0.12
 	else
-		local blend = 1 - math.pow( 1 - 1 / self.aimBlendSpeed, dt * 60 )
 		self.aimWeight = sm.util.lerp( self.aimWeight, 0.0, blend )
-		bobbing = 1
 	end
 
 	self.tool:updateCamera( 2.8, 30.0, sm.vec3.new( 0.65, 0.0, 0.05 ), self.aimWeight )

@@ -1,15 +1,15 @@
 {
-   "allow_add_mods" : true,
+   "allow_add_mods" : false,
    "custom_icons" : false,
-   "description" : "This mod doesn't have a description",
-   "localId" : "3fff1f3d-13c2-4160-acc8-9d89b3b97fd1",
-   "name" : "SM_GunGame",
-   "type" : "Custom Game",
    "dependencies" : [
       {
          "fileId" : 1903792337,
          "localId" : "3269e6ef-4d80-4f75-b8f6-dffb303e5243"
       }
    ],
+   "description" : "This mod doesn't have a description",
+   "localId" : "3fff1f3d-13c2-4160-acc8-9d89b3b97fd1",
+   "name" : "SM_GunGame",
+   "type" : "Custom Game",
    "version" : 0
 }
